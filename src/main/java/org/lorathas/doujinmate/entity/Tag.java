@@ -4,6 +4,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -22,6 +24,9 @@ public class Tag {
 
     @Column
     private String namespace;
+
+    @ManyToMany(mappedBy = "tags")
+    private Set<Doujin> doujins = new HashSet<>();
 
     public UUID getId() {
         return id;

@@ -4,6 +4,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -24,6 +26,10 @@ public class Doujin {
     //SHA-256 file hash
     @Column(columnDefinition = "BINARY(32)")
     private Byte[] shaHash;
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name = "DoujinTags", joinColumns = {@JoinColumn(name = "doujinId")}, inverseJoinColumns = {@JoinColumn(name = "tagId")})
+    private Set<Tag> tags = new HashSet<>();
 
     public UUID getId() {
         return id;
