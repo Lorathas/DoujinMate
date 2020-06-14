@@ -45,6 +45,8 @@ dependencies {
 
     implementation 'com.h2database:h2:1.4.200'
 
+    implementation 'org.apache.commons:commons-compress:1.20'
+
 //    implementation "org.apache.derby:derby:$derbyVersion"
 //    implementation "org.apache.derby:derbyclient:$derbyVersion"
 

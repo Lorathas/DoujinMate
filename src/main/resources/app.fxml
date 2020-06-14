@@ -1,36 +1,52 @@
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
-
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.RowConstraints?>
-<GridPane xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-
+<GridPane fx:id="pane" xmlns:fx="http://javafx.com/fxml" alignment="center">
     <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS"/>
-        <ColumnConstraints hgrow="NEVER"/>
-        <ColumnConstraints hgrow="NEVER"/>
     </columnConstraints>
     <rowConstraints>
         <RowConstraints vgrow="NEVER"/>
         <RowConstraints vgrow="ALWAYS"/>
     </rowConstraints>
 
-    <MenuBar GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="0">
+    <MenuBar GridPane.columnIndex="0" GridPane.rowIndex="0">
         <Menu text="File">
             <MenuItem text="Exit" onAction="#exit"/>
         </Menu>
         <Menu text="Edit">
             <MenuItem text="Settings" onAction="#openSettings"/>
         </Menu>
+        <Menu text="Library">
+            <MenuItem text="Import Books" onAction="#importBooks"/>
+        </Menu>
         <Menu text="Help">
             <MenuItem text="About" onAction="#openHelp"/>
         </Menu>
     </MenuBar>
 
+    <TabPane GridPane.rowIndex="1" GridPane.columnIndex="0">
+        <Tab text="Library" closable="false">
+            <GridPane hgap="10" vgap="10">
+                <padding>
+                    <Insets top="10" bottom="10" left="10" right="10"/>
+                </padding>
+                <columnConstraints>
+                    <ColumnConstraints hgrow="NEVER"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                    <ColumnConstraints hgrow="NEVER"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints vgrow="NEVER"/>
+                    <RowConstraints vgrow="ALWAYS"/>
+                </rowConstraints>
+
+                <Button text="Import" onAction="#importBooks" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="search" promptText="Search" GridPane.rowIndex="0" GridPane.columnIndex="2" onAction="#refreshLibraryQuery"/>
+                <ListView fx:id="doujins" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="3"/>
+            </GridPane>
+        </Tab>
+        <Tab text="Tasks" closable="false"/>
+    </TabPane>
 
 </GridPane>

@@ -12,6 +12,20 @@ import java.util.UUID;
 @Table(name = "Doujins")
 public class Doujin {
 
+    public Doujin() {
+    }
+
+    public Doujin(@NotNull String name, @NotNull String path) {
+        this.name = name;
+        this.path = path;
+    }
+
+    public Doujin(@NotNull String name, @NotNull String path, byte[] shaHash) {
+        this.name = name;
+        this.path = path;
+        this.shaHash = shaHash;
+    }
+
     @Id
     @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false)
     @GeneratedValue(generator = "UUID")
@@ -25,7 +39,7 @@ public class Doujin {
     private String path;
     //SHA-256 file hash
     @Column(columnDefinition = "BINARY(32)")
-    private Byte[] shaHash;
+    private byte[] shaHash;
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "DoujinTags", joinColumns = {@JoinColumn(name = "doujinId")}, inverseJoinColumns = {@JoinColumn(name = "tagId")})
@@ -51,11 +65,11 @@ public class Doujin {
         this.path = path;
     }
 
-    public Byte[] getShaHash() {
+    public byte[] getShaHash() {
         return shaHash;
     }
 
-    public void setShaHash(Byte[] shaHash) {
+    public void setShaHash(byte[] shaHash) {
         this.shaHash = shaHash;
     }
 }

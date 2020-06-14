@@ -1,11 +1,13 @@
 package org.lorathas.doujinmate;
 
 import dagger.Component;
+import org.lorathas.doujinmate.controller.AppController;
+import org.lorathas.doujinmate.controller.SettingsController;
+import org.lorathas.doujinmate.task.ImportTask;
+import org.lorathas.doujinmate.task.ImportTaskConsumer;
 
-import javax.inject.Named;
-import javax.inject.Provider;
 import javax.inject.Singleton;
-import java.util.Map;
+import java.util.concurrent.BlockingQueue;
 
 @Singleton
 @Component(modules = MainModule.class)
@@ -17,4 +19,9 @@ public interface DiContainer {
     SettingsController settingsController();
     @Singleton
     Settings settings();
+
+    @Singleton
+    BlockingQueue<ImportTask> importTaskQueue();
+    @Singleton
+    ImportTaskConsumer importTaskConsumer();
 }

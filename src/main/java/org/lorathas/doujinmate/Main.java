@@ -26,6 +26,8 @@ public class Main extends Application {
         settings = diContainer.settings();
         settings.initializeEnvironment();
 
+        new Thread(diContainer.importTaskConsumer()).start();
+
         var loader = new FXMLLoader(getClass().getClassLoader().getResource("app.fxml"));
         loader.setController(diContainer.appController());
 
